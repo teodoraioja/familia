@@ -8,19 +8,18 @@
  * File:   main.cpp
  * Author: teo
  *
- * Created on December 20, 2016, 1:19 PM
+ * Created on December 21, 2016, 4:15 PM
  */
 
-using namespace std;
-#include <iostream>
 #include <cstdlib>
+
+using namespace std;
 
 /*
  * 
  */
-int main() {
-	
-	cout << "Hello World! \n";
+int main(int argc, char** argv) {
+
 	return 0;
 }
 
