@@ -12,13 +12,21 @@
  */
 
 #include <cstdlib>
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 
 /*
  * 
  */
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
+	std::ifstream file("Read.txt");
+    std::string str; 
+    while (std::getline(file, str))
+    {
+        cout << str;
+    }
 
 	return 0;
 }
