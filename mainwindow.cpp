@@ -19,8 +19,19 @@ void MainWindow::on_openFile_clicked()
 QString filename= QFileDialog::getOpenFileName(
             this,
             tr("Open File"),
-            "C://",
+            "C://Users/teo/Documents/FamiliProject",
             "Text File(*.txt)"
             );
-QMessageBox::information(this,tr("File Name"), filename);
+ui->textBrowser->setText(filename);
+QPushButton *trainButton = new QPushButton(this);
+trainButton->setText(tr("Analyze Tree"));
+trainButton->move(20, 90);
+trainButton->show();
+
+}
+
+
+void MainWindow::on_trainButton_clicked()
+{
+ui->textBrowser->setText("apasat");
 }
