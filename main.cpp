@@ -1,12 +1,11 @@
-
-
-#include <iostream>
-
-using namespace std;
-
+#include "mainwindow.h"
+#include <QApplication>
 
 int main(int argc, char *argv[])
 {
-	dfsdfsdf
-}
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
 
+    return a.exec();
+}
