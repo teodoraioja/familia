@@ -36,6 +36,19 @@ node::node()
 	age = x = 0;
 }
 
+void node::getData()
+{
+	char ch;
+	cout << "\nName of the Person: ";
+	cin >> name;
+	cout << "Age of " << name << ": ";
+	cin >> age;
+	cout << name << " is (m/f): ";
+	cin >> ch;
+	if (ch == 'm')
+		g = 1;
+}
+
 
 class familyTree
 {
@@ -46,12 +59,47 @@ public:
 
 	familyTree();
 
+	void addNew();
+
 
 };
 
 familyTree::familyTree()
 {
 	start = NULL;
+}
+
+void familyTree::addNew()
+{
+	node* temp = new node;
+	temp->getData();
+
+	if (start == NULL)
+	{
+		start = temp;
+		temp->x = 0;
+	}
+
+	else
+	{
+		cout << "\nEnter any relation's name: ";
+		char name[50];
+		cin >> name;
+		cout << "\n1. Child\n2. Sibiling\n\n" << temp->name << " is ____ to " << name << " : ";
+		int opt;
+		cin >> opt;
+		switch (opt)
+		{
+		case 1:
+			addChild(search(name), temp);
+			break;
+		case 2:
+			addSib(search(name), temp);
+			break;
+
+		}
+	}
+	cout << "\nPerson sucessfully added.\n";
 }
 
 
@@ -83,6 +131,7 @@ int main()
 			break;
 
 		case 1:
+			T[n].addNew();
 			break;
 
 		case 2:
