@@ -19,7 +19,7 @@ using namespace std;
 struct node
 {
 	char name[50];
-	short int age, x;    // x - height of node
+	short int  x;    // x - height of node
 	bool g;             // g- gender
 	node* fc;           // Pointer to first child
 	node* ns;           // Pointer to next sibiling
@@ -33,7 +33,6 @@ node::node()
 	fc = ns = NULL;
 	g = 0;
 	strcpy_s(name, "");
-	age = x = 0;
 }
 
 void node::getData()
@@ -41,8 +40,6 @@ void node::getData()
 	char ch;
 	cout << "\nName of the Person: ";
 	cin >> name;
-	cout << "Age of " << name << ": ";
-	cin >> age;
 	cout << name << " is (m/f): ";
 	cin >> ch;
 	if (ch == 'm')
@@ -59,7 +56,12 @@ public:
 
 	familyTree();
 
+
+		void addSib(node*, node*);           // Functions for adding new members
+	void addChild(node*, node*);
 	void addNew();
+
+	node* search(char[]);
 
 
 };
@@ -67,6 +69,37 @@ public:
 familyTree::familyTree()
 {
 	start = NULL;
+}
+
+node* familyTree::search(char s[50])
+{
+
+	
+	return 0;
+}
+
+void familyTree::addSib(node* a, node* b)
+{
+	// b is added as sibling of a
+
+	while (a->ns != NULL)
+		a = a->ns;
+	a->ns = b;
+
+	b->x = a->x;
+}
+
+void familyTree::addChild(node* a, node* b)
+{
+
+	// b is added as child as a (or) b is added as sibiling to last child of a
+
+	if (a->fc == NULL)
+		a->fc = b;
+	else
+		addSib(a->fc, b);
+
+	b->x = a->x + 1;
 }
 
 void familyTree::addNew()
