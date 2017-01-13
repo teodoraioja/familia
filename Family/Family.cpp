@@ -18,12 +18,6 @@ using namespace std;
 
 struct node
 {
-
-
-
-
-
-
 	char name[50];
 	short int  x;    // x - height of node
 	bool g;             // g- gender
@@ -100,7 +94,7 @@ node* familyTree::search(char s[50])
 	else
 	{
 		return NULL;
-		cout << "***Not found***8";
+		cout << "***Not found***";
 	}
 
 
@@ -353,7 +347,6 @@ int main()
 
 		switch (opt)
 		{
-
 		default:
 			cout << "Invalid input";
 			break;
@@ -361,18 +354,13 @@ int main()
 		case 1:
 			T[n].addNew();
 			break;
-
 		case 2:
 			T[n].find();
 			break;
 
 		case 3:
 			return 0;
-
-
 		}
-		cout << "\n\nEnter your choice =";
-		cin >> c;
 	}
 }
 
