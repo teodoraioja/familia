@@ -18,9 +18,16 @@ using namespace std;
 
 struct node
 {
+
+
+
+	
+
+
 	char name[50];
 	short int  x;    // x - height of node
 	bool g;             // g- gender
+
 	node* fc;           // Pointer to first child
 	node* ns;           // Pointer to next sibiling
 
@@ -38,7 +45,7 @@ node::node()
 void node::getData()
 {
 	char ch;
-	cout << "\nName of the Person: ";
+	cout << "\nName: ";
 	cin >> name;
 	cout << name << " is (m/f): ";
 	cin >> ch;
@@ -57,7 +64,7 @@ public:
 	familyTree();
 
 
-		void addSib(node*, node*);           // Functions for adding new members
+	void addSib(node*, node*);          
 	void addChild(node*, node*);
 	void addNew();
 
@@ -115,7 +122,7 @@ void familyTree::addNew()
 
 	else
 	{
-		cout << "\nEnter any relation's name: ";
+		cout << "\nEnter any relation's: ";
 		char name[50];
 		cin >> name;
 		cout << "\n1. Child\n2. Sibiling\n\n" << temp->name << " is ____ to " << name << " : ";
@@ -152,7 +159,7 @@ int main()
 #ifdef LINUX
 		system("clear");
 #endif // LINUX
-		cout << "\n\n\n\tFamily tree no = " << n << "\n\n\t1. Add new person\n\t2. Find relationship b/w two persons\n\t3. Search\n\t4. Destroy\n\t5. Display\n\t6. Change family tree\n\t7. Connect two family trees\n\t8. Exit\n\n\tEnter your choice = ";
+		cout << "\n\n\n\tFamily tree no = " << n << "\n\n\t1. Add new person\n\t2. Find relationship b/w two persons\n\t3. Exit\n\n\tEnter your choice = ";
 		cin >> opt;
 		cout << endl;
 
@@ -189,7 +196,7 @@ int main()
 			return 0;
 
 		}
-		cout << "\n\nPress any key to continue.....";
+		cout << "\n\nEnter your choice =";
 		cin >> c;
 	}
 }
