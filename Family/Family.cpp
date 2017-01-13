@@ -62,7 +62,8 @@ public:
 	void addChild(node*, node*);
 	void addNew();
 	void find();
-	void deleteTree(node*);                // Function to delete full tree
+	void deleteTree(node*);                // function to delete full tree
+	void show(node*);                // function to show tree
 
 
 
@@ -197,6 +198,8 @@ void familyTree::addNew()
 	std::cout << "\nPerson sucessfully added.\n";
 }
 
+
+
 void familyTree::find()
 {
 
@@ -330,7 +333,7 @@ void familyTree::find()
 		strcpy_s(strg1, "daughter");
 		if (ptr2->g)
 			strcpy_s(strg1, "son");
-		ptr2 = ptr2->fc->fc;
+		ptr2 = ptr2->fc->fc->fc;
 		while (ptr2 != NULL)
 		{
 			if (ptr2 == ptr1)
@@ -349,7 +352,7 @@ void familyTree::find()
 		if (ptr1->g)
 			strcpy_s(strg2, "father");
 
-		ptr1 = ptr1->fc->fc;
+		ptr1 = ptr1->fc->fc->fc;
 
 		while (ptr1 != NULL)
 		{
@@ -387,6 +390,21 @@ void familyTree::deleteTree(node* ptr)
 	start = NULL;
 }
 
+void familyTree::show(node* ptr)
+{
+	// Traverses the full n-array tree by recursion to display names of all people
+
+	if (ptr == NULL)
+		return;
+
+	while (ptr != NULL)
+	{
+		cout << ptr->name << endl;
+		show(ptr->fc);
+		ptr = ptr->ns;
+	}
+}
+
 
 int main()
 {
@@ -398,7 +416,7 @@ int main()
 	while (1)
 	{
 
-		std::cout << "\n\n\n\tFamily tree no = " << n << "\n\n\t1. Add new person\n\t2. Find relationship b/w two persons\n\t3. Delete tree\n\t4. Exit\n\n\tEnter your choice = ";
+		std::cout << "\n\n\n\tFamily tree no = " << n << "\n\n\t1. Add new person\n\t2. Find relationship b/w two persons\n\t3. Delete tree\n\t4. Show tree\n\t5. Exit\n\n\tEnter your choice = ";
 		cin >> opt;
 		std::cout << endl;
 
@@ -414,8 +432,10 @@ int main()
 			T[n].deleteTree(T[n].start);
 			cout << "Tree " << n << " has been deleteed sucessfully";
 			break;
-
 		case 4:
+			T[n].show(T[n].start);
+			break;
+		case 5:
 			return 0;
 		default:
 			std::cout << "Invalid input";
