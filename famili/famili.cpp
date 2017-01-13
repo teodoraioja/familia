@@ -338,7 +338,7 @@ int main()
 	int opt, n, n1, n2;
 	char c, name[50];
 	cout << "\nEnter the family tree number = ";
-	cin >> n;
+	cin >> n; 
 	while (1)
 	{
 #ifdef WINDOWS
