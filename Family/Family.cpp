@@ -39,9 +39,9 @@ node::node()
 void node::getData()
 {
 	char ch;
-	cout << "\nName: ";
+	std::cout << "\nName: ";
 	cin >> name;
-	cout << name << " is (m/f): ";
+	std::cout << name << " is (m/f): ";
 	cin >> ch;
 	if (ch == 'm')
 		g = 1;
@@ -94,7 +94,7 @@ node* familyTree::search(char s[50])
 	else
 	{
 		return NULL;
-		cout << "***Not found***";
+		std::cout << "***Not found***";
 	}
 
 
@@ -176,10 +176,10 @@ void familyTree::addNew()
 
 	else
 	{
-		cout << "\nEnter any relation's: ";
+		std::cout << "\nEnter any relation's: ";
 		char name[50];
 		cin >> name;
-		cout << "\n1. Child\n2. Sibiling\n\n" << temp->name << " is ____ to " << name << " : ";
+		std::cout << "\n1. Child\n2. Sibiling\n\n" << temp->name << " is ____ to " << name << " : ";
 		int opt;
 		cin >> opt;
 		switch (opt)
@@ -193,14 +193,14 @@ void familyTree::addNew()
 
 		}
 	}
-	cout << "\nPerson sucessfully added.\n";
+	std::cout << "\nPerson sucessfully added.\n";
 }
 
 void familyTree::find()
 {
 
 	char name1[50], name2[50];
-	cout << "Enter names of two persons:\n";
+	std::cout << "Enter names of two persons:\n";
 	cin >> name1 >> name2;
 	node* ptr1 = search(name1);
 	node* ptr2 = search(name2);
@@ -212,6 +212,7 @@ void familyTree::find()
 	{
 
 	case 0:
+		std::cout << 'o';
 		char s[50];
 		strcpy_s(s, "sister");
 		if (ptr1->g)
@@ -222,7 +223,7 @@ void familyTree::find()
 		{
 			if (ptr == ptr2)
 			{
-				cout << endl << name1 << " is " << name2 << "'s " << s << endl;
+				std::cout << endl << name1 << " is " << name2 << "'s " << s << endl;
 				return;
 			}
 			ptr = ptr->ns;
@@ -232,15 +233,16 @@ void familyTree::find()
 		{
 			if (ptr == ptr1)
 			{
-				cout << endl << name1 << " is " << name2 << "'s " << s << endl;
+				std::cout << endl << name1 << " is " << name2 << "'s " << s << endl;
 				return;
 			}
 			ptr = ptr->ns;
 		}
-		cout << endl << name1 << " and " << name2 << " are Cousins";
+		std::cout << endl << name1 << " and " << name2 << " are Cousins";
 		break;
 
 	case 1:
+		std::cout << '1';
 		char str3[50];
 		strcpy_s(str3, "daughter");
 		if (ptr1->g)
@@ -250,7 +252,7 @@ void familyTree::find()
 		{
 			if (ptr2 == ptr1)
 			{
-				cout << endl << name1 << " is " << name2 << "'s " << str3;
+				std::cout << endl << name1 << " is " << name2 << "'s " << str3;
 				return;
 			}
 			ptr2 = ptr2->ns;
@@ -258,9 +260,10 @@ void familyTree::find()
 		strcpy_s(str3, "niece");
 		if (ptr1->g)
 			strcpy_s(str3, "nephew");
-		cout << endl << name1 << " is " << name2 << "'s " << str3;
+		std::cout << endl << name1 << " is " << name2 << "'s " << str3;
 		break;
 	case -1:
+		std::cout << '-1';
 		char str[10];
 		strcpy_s(str, "mother");
 		if (ptrk->g)
@@ -271,18 +274,19 @@ void familyTree::find()
 		{
 			if (ptr == ptrk1)
 			{
-				cout << endl << name1 << " is " << name2 << "'s " << str;
+				std::cout << endl << name1 << " is " << name2 << "'s " << str;
 				return;
 			}
 			ptr = ptr->ns;
 		}
 		strcpy_s(str, "aunt");
 		if (ptrk->g)
-			strcpy_s(str, "uncule");
-		cout << endl << name1 << " is " << name2 << "'s " << str;
+			strcpy_s(str, "uncle");
+		std::cout << endl << name1 << " is " << name2 << "'s " << str;
 		break;
 
 	case 2:
+		std::cout << '2';
 		char str1[50];
 		strcpy_s(str1, "daughter");
 		if (ptr2->g)
@@ -292,13 +296,14 @@ void familyTree::find()
 		{
 			if (ptr2 == ptr1)
 			{
-				cout << endl << name1 << " is grand " << str1 << " of " << name2;
+				std::cout << endl << name1 << " is grand " << str1 << " of " << name2;
 				return;
 			}
 			ptr2 = ptr2->ns;
 		}
 		break;
 	case -2:
+		std::cout << '-2';
 		char str2[50];
 		strcpy_s(str2, "mother");
 
@@ -311,7 +316,45 @@ void familyTree::find()
 		{
 			if (ptr1 == ptr2)
 			{
-				cout << endl << name1 << " is grand " << str2 << " of " << name2;
+				std::cout << endl << name1 << " is grand " << str2 << " of " << name2;
+				return;
+			}
+			ptr1 = ptr1->ns;
+		}
+
+		break;
+	case 3:
+		std::cout << '3';
+		char strg1[50];
+		strcpy_s(strg1, "daughter");
+		if (ptr2->g)
+			strcpy_s(strg1, "son");
+		ptr2 = ptr2->fc->fc;
+		while (ptr2 != NULL)
+		{
+			if (ptr2 == ptr1)
+			{
+				std::cout << endl << name1 << " is grand grand " << strg1 << " of " << name2;
+				return;
+			}
+			ptr2 = ptr2->ns;
+		}
+		break;
+	case -3:
+		std::cout << '-3';
+		char strg2[50];
+		strcpy_s(strg2, "mother");
+
+		if (ptr1->g)
+			strcpy_s(strg2, "father");
+
+		ptr1 = ptr1->fc->fc;
+
+		while (ptr1 != NULL)
+		{
+			if (ptr1 == ptr2)
+			{
+				std::cout << endl << name1 << " is grand grand " << strg2 << " of " << name2;
 				return;
 			}
 			ptr1 = ptr1->ns;
@@ -319,7 +362,7 @@ void familyTree::find()
 
 		break;
 	default:
-		cout << "Too far relationship";
+		std::cout << "Too far relationship! It's a  " << ptr1->x - ptr2->x << "degree";
 		break;
 	}
 }
@@ -331,26 +374,17 @@ int main()
 	familyTree T[100];
 	int opt, n, n1, n2;
 	char c, name[50];
-	cout << "\nEnter the family tree number = ";
+	std::cout << "\nEnter the family tree number = ";
 	cin >> n;
 	while (1)
 	{
-#ifdef WINDOWS
-		system("cls");
-#endif // WINDOWS
-#ifdef LINUX
-		system("clear");
-#endif // LINUX
-		cout << "\n\n\n\tFamily tree no = " << n << "\n\n\t1. Add new person\n\t2. Find relationship b/w two persons\n\t3. Exit\n\n\tEnter your choice = ";
+
+		std::cout << "\n\n\n\tFamily tree no = " << n << "\n\n\t1. Add new person\n\t2. Find relationship b/w two persons\n\t3. Exit\n\n\tEnter your choice = ";
 		cin >> opt;
-		cout << endl;
+		std::cout << endl;
 
 		switch (opt)
 		{
-		default:
-			cout << "Invalid input";
-			break;
-
 		case 1:
 			T[n].addNew();
 			break;
@@ -360,7 +394,13 @@ int main()
 
 		case 3:
 			return 0;
+		default:
+			std::cout << "Invalid input";
+			break;
+
 		}
+		cout << "\n\nPress any key to continue.....";
+		cin >> c;
 	}
 }
 
