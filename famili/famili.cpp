@@ -68,7 +68,9 @@ public:
 	void addChild(node*, node*);
 	void addNew();
 
-	node* search(char[]);
+	node* search(char[]);// search furnctions
+	node* trDown(node*, char[]);   
+	node* trRight(node*, char[]);
 
 
 };
@@ -80,9 +82,64 @@ familyTree::familyTree()
 
 node* familyTree::search(char s[50])
 {
+	/*
+	Searches for name itto it's sibilings and their children
+	Returns the pointer of node where the name is present
+	*/
+
+	node *ptr = start;
+	if (strcmp(ptr->name, s) == 0)
+		return ptr;
+	else if (trRight(start, s) != NULL)
+		return trRight(start, s);
+	else if (trDown(start, s) != NULL)
+		return trDown(start, s);
+	else
+	{
+		return NULL;
+		cout << "***Not found***8";
+	}
+
 
 	
 	return 0;
+}
+
+node* familyTree::trDown(node* ptr, char s[50])
+{
+	// Searches all the children
+
+	ptr = ptr->fc;
+
+	while (ptr != NULL)
+	{
+		if (strcmp(ptr->name, s) == 0)
+			return ptr;
+		else if (trRight(ptr, s) != NULL)
+			return trRight(ptr, s);
+		else
+			ptr = ptr->fc;
+	}
+	return NULL;
+}
+
+node* familyTree::trRight(node* ptr, char s[50])
+{
+
+	//  Searches all the sibilings
+
+	ptr = ptr->ns;
+
+	while (ptr != NULL)
+	{
+		if (strcmp(ptr->name, s) == 0)
+			return ptr;
+		else if (trDown(ptr, s) != NULL)
+			return trDown(ptr, s);
+		else
+			ptr = ptr->ns;
+	}
+	return NULL;
 }
 
 void familyTree::addSib(node* a, node* b)
