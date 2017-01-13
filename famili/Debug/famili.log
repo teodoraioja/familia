@@ -1,6 +1,6 @@
 ﻿  famili.cpp
-c:\users\teo\documents\visual studio 2015\projects\famili\famili\famili.cpp(208): warning C4101: 'name': unreferenced local variable
-c:\users\teo\documents\visual studio 2015\projects\famili\famili\famili.cpp(207): warning C4101: 'n2': unreferenced local variable
-c:\users\teo\documents\visual studio 2015\projects\famili\famili\famili.cpp(207): warning C4101: 'n1': unreferenced local variable
+c:\users\teo\documents\visual studio 2015\projects\famili\famili\famili.cpp(339): warning C4101: 'name': unreferenced local variable
+c:\users\teo\documents\visual studio 2015\projects\famili\famili\famili.cpp(338): warning C4101: 'n2': unreferenced local variable
+c:\users\teo\documents\visual studio 2015\projects\famili\famili\famili.cpp(338): warning C4101: 'n1': unreferenced local variable
   famili.vcxproj -> c:\users\teo\documents\visual studio 2015\Projects\famili\Debug\famili.exe
   famili.vcxproj -> c:\users\teo\documents\visual studio 2015\Projects\famili\Debug\famili.pdb (Full PDB)

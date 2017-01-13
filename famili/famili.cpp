@@ -67,6 +67,9 @@ public:
 	void addSib(node*, node*);          
 	void addChild(node*, node*);
 	void addNew();
+	void find();
+
+
 
 	node* search(char[]);// search furnctions
 	node* trDown(node*, char[]);   
@@ -199,6 +202,134 @@ void familyTree::addNew()
 	cout << "\nPerson sucessfully added.\n";
 }
 
+void familyTree::find()
+{
+
+	char name1[50], name2[50];
+	cout << "Enter names of two persons:\n";
+	cin >> name1 >> name2;
+	node* ptr1 = search(name1);
+	node* ptr2 = search(name2);
+	node* ptr;
+	node* ptrk = ptr1;
+	node* ptrk1 = ptr2;
+
+	switch (ptr1->x - ptr2->x)
+	{
+
+	case 0:
+		char s[50];
+		strcpy_s(s, "sister");
+		if (ptr1->g)
+			strcpy_s(s, "brother");
+
+		ptr = ptr1;
+		while (ptr != NULL)
+		{
+			if (ptr == ptr2)
+			{
+				cout << endl << name1 << " is " << name2 << "'s " << s << endl;
+				return;
+			}
+			ptr = ptr->ns;
+		}
+		ptr = ptr2;
+		while (ptr != NULL)
+		{
+			if (ptr == ptr1)
+			{
+				cout << endl << name1 << " is " << name2 << "'s " << s << endl;
+				return;
+			}
+			ptr = ptr->ns;
+		}
+		cout << endl << name1 << " and " << name2 << " are Cousins";
+		break;
+
+	case 1:
+		char str3[50];
+		strcpy_s(str3, "daughter");
+		if (ptr1->g)
+			strcpy_s(str3, "son");
+		ptr2 = ptr2->fc;
+		while (ptr2 != NULL)
+		{
+			if (ptr2 == ptr1)
+			{
+				cout << endl << name1 << " is " << name2 << "'s " << str3;
+				return;
+			}
+			ptr2 = ptr2->ns;
+		}
+		strcpy_s(str3, "niece");
+		if (ptr1->g)
+			strcpy_s(str3, "nephew");
+		cout << endl << name1 << " is " << name2 << "'s " << str3;
+		break;
+	case -1:
+		char str[10];
+		strcpy_s(str, "mother");
+		if (ptrk->g)
+			strcpy_s(str, "father");
+
+		ptr = ptrk->fc;
+		while (ptr != NULL)
+		{
+			if (ptr == ptrk1)
+			{
+				cout << endl << name1 << " is " << name2 << "'s " << str;
+				return;
+			}
+			ptr = ptr->ns;
+		}
+		strcpy_s(str, "aunt");
+		if (ptrk->g)
+			strcpy_s(str, "uncule");
+		cout << endl << name1 << " is " << name2 << "'s " << str;
+		break;
+
+	case 2:
+		char str1[50];
+		strcpy_s(str1, "daughter");
+		if (ptr2->g)
+			strcpy_s(str1, "son");
+		ptr2 = ptr2->fc->fc;
+		while (ptr2 != NULL)
+		{
+			if (ptr2 == ptr1)
+			{
+				cout << endl << name1 << " is grand " << str1 << " of " << name2;
+				return;
+			}
+			ptr2 = ptr2->ns;
+		}
+		break;
+	case -2:
+		char str2[50];
+		strcpy_s(str2, "mother");
+
+		if (ptr1->g)
+			strcpy_s(str2, "father");
+
+		ptr1 = ptr1->fc->fc;
+
+		while (ptr1 != NULL)
+		{
+			if (ptr1 == ptr2)
+			{
+				cout << endl << name1 << " is grand " << str2 << " of " << name2;
+				return;
+			}
+			ptr1 = ptr1->ns;
+		}
+
+		break;
+	default:
+		cout << "Too far relationship";
+		break;
+	}
+}
+
 
 
 int main()
@@ -232,7 +363,7 @@ int main()
 			break;
 
 		case 2:
-		
+			T[n].find();
 			break;
 
 		case 3:
