@@ -62,6 +62,7 @@ public:
 	void addChild(node*, node*);
 	void addNew();
 	void find();
+	void deleteTree(node*);                // Function to delete full tree
 
 
 
@@ -368,6 +369,24 @@ void familyTree::find()
 }
 
 
+void familyTree::deleteTree(node* ptr)
+{
+	node* temp = ptr;
+
+	if (ptr == NULL)
+		return;
+
+	while (ptr != NULL)
+	{
+		deleteTree(ptr->fc);
+		temp = ptr;
+		ptr = ptr->ns;
+		delete temp;
+	}
+
+	start = NULL;
+}
+
 
 int main()
 {
@@ -379,7 +398,7 @@ int main()
 	while (1)
 	{
 
-		std::cout << "\n\n\n\tFamily tree no = " << n << "\n\n\t1. Add new person\n\t2. Find relationship b/w two persons\n\t3. Exit\n\n\tEnter your choice = ";
+		std::cout << "\n\n\n\tFamily tree no = " << n << "\n\n\t1. Add new person\n\t2. Find relationship b/w two persons\n\t3. Delete tree\n\t4. Exit\n\n\tEnter your choice = ";
 		cin >> opt;
 		std::cout << endl;
 
@@ -391,8 +410,12 @@ int main()
 		case 2:
 			T[n].find();
 			break;
-
 		case 3:
+			T[n].deleteTree(T[n].start);
+			cout << "Tree " << n << " has been deleteed sucessfully";
+			break;
+
+		case 4:
 			return 0;
 		default:
 			std::cout << "Invalid input";
